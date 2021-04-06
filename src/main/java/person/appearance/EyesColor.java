@@ -11,7 +11,7 @@ public class EyesColor {
         add("разные");
     }};
 
-    public static String colorByIndex(int i) {
+    public static String colorByIndex(final int i) {
         String color = COLORS.get(i);
         if (color != null) {
             return color;

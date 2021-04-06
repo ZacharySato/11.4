@@ -4,12 +4,12 @@ import java.util.HashMap;
 
 public class HairColor extends HairOption {
 
-    HairColor(int i) {
+    HairColor(final int i) {
         super(i);
     }
 
     @Override
-    protected void roll(int i) {
+    protected final void roll(final int i) {
         HashMap<Integer, String> hairColorMap = new HashMap<>() {{
             put(1, "чёрные");
             put(2, "каштановые");
@@ -22,8 +22,8 @@ public class HairColor extends HairOption {
             put(9, "синие");
         }};
         if (i > 0) {
-            option = hairColorMap.get(i);
-            if (option == null) {
+            setOption(hairColorMap.get(i));
+            if (getOption() == null) {
                 throw new IllegalStateException("Unexpected value: " + i);
             }
         }

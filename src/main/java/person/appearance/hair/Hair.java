@@ -4,13 +4,13 @@ public class Hair {
     private final String length;
     private final String color;
 
-    public Hair(int i) {
-        length = new HairLength(i).option;
-        color = new HairColor(i).option;
+    public Hair(final int i) {
+        length = new HairLength(i).getOption();
+        color = new HairColor(i).getOption();
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return length + (color.isEmpty() ? "" : ", " + color);
     }
 }

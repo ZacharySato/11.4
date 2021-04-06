@@ -2,16 +2,16 @@ package person.appearance.hair;
 
 public class HairLength extends HairOption {
 
-    HairLength(int i) {
+    HairLength(final int i) {
         super(i);
     }
 
     @Override
-    protected void roll(int i) {
+    protected final void roll(final int i) {
         if (i > 0) {
-            option = (i > 4) ? "длинные" : "короткие";
+            setOption((i > 4) ? "длинные" : "короткие");
         } else {
-            option = "нет";
+            setOption("нет");
         }
     }
 }
