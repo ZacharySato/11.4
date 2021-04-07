@@ -2,10 +2,8 @@ import generators.AppearanceGenerator;
 import generators.FioGenerator;
 import generators.PhoneGenerator;
 import generators.PhysGenerator;
+import person.FioUniform;
 import person.Person;
-import person.Phone;
-import person.Physical;
-import person.appearance.Appearance;
 
 public class InputProcessor {
 
@@ -15,34 +13,15 @@ public class InputProcessor {
         if (input.trim().matches("\\d{4}")) {
             // Создаём Person
             final int intCode = Integer.parseInt(input);
-
-            final FioGenerator fioGenerator = new FioGenerator();
-            fioGenerator.generateParams(intCode);
-            final String lastName = fioGenerator.getLastName();
-            final String firstName = fioGenerator.getFirstName();
-            final String middleName = fioGenerator.getMiddleName();
-
-            final PhysGenerator physGenerator = new PhysGenerator();
-            physGenerator.generateParams(intCode);
-            final Physical physical = physGenerator.buildResponse();
-
-            final AppearanceGenerator appearanceGenerator = new AppearanceGenerator();
-            appearanceGenerator.generateParams(intCode);
-            final Appearance appearance = appearanceGenerator.buildResponse();
-
-            Phone phone = null;
+            final Person human = new Person(input);
+            human.called(new FioUniform(new FioGenerator().castFeature(intCode))).
+            withPhysical(new PhysGenerator().castFeature(intCode)).
+            withAppearance(new AppearanceGenerator().castFeature(intCode));
             // добавляем телефон, только если введённый код не палиндром
             if (!input.equals(new StringBuilder(input).reverse().toString())) {
-                final PhoneGenerator phoneGenerator = new PhoneGenerator();
-                phoneGenerator.generateParams(intCode);
-                phone = phoneGenerator.buildResponse();
+                human.withPhone(new PhoneGenerator().castFeature(intCode));
             }
-
-            result = new Person(input,
-                    lastName, firstName, middleName,
-                    physical,
-                    appearance,
-                    phone).toString();
+            result = human.toString();
         } else {
             result = "Неверный ввод.";
         }

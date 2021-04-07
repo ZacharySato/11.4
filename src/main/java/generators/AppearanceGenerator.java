@@ -5,7 +5,7 @@ import person.appearance.EyesColor;
 import person.appearance.hair.Hair;
 
 
-public class AppearanceGenerator implements Generator<Appearance> {
+public class AppearanceGenerator extends Generator<Appearance> {
 
     private String eyes;
     private Hair hair;

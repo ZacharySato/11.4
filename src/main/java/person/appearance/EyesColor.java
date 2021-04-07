@@ -3,7 +3,7 @@ package person.appearance;
 import java.util.ArrayList;
 
 public class EyesColor {
-    private static final ArrayList<String> COLORS = new ArrayList<String>() {{
+    private static final ArrayList<String> COLORS = new ArrayList<>() {{
         add("голубые");
         add("зеленые");
         add("карие");
