@@ -56,11 +56,22 @@ public final class Person {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder()
-                .append(id).append("\n")
-                .append(name).append("\n")
-                .append(phys).append("\n")
-                .append(appearance).append("\n");
+        final StringBuilder sb = new StringBuilder().append(id).append("\n");
+        if (name != null) {
+            sb.append(name).append("\n");
+        } else {
+            sb.append("Безымянный").append("\n");
+        }
+        if (phys != null) {
+            sb.append(phys).append("\n");
+        } else {
+            sb.append("Физические параметры неизвестны").append("\n");
+        }
+        if (appearance != null) {
+            sb.append(appearance).append("\n");
+        } else {
+            sb.append("Внешность неизвестна").append("\n");
+        }
         if (phone != null) {
             sb.append(phone);
         } else {
