@@ -2,9 +2,9 @@ package generators;
 
 public abstract class Generator<T> {
 
-    abstract void generateParams(int code);
+    protected abstract void generateParams(int code);
 
-    abstract T buildResponse();
+    protected abstract T buildResponse();
 
     public final T castFeature(final int code) {
         generateParams(code);

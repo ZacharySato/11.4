@@ -19,7 +19,7 @@ public class FioGenerator extends Generator<Fio> {
      *
      * @param code код для генерации
      */
-    public final void generateParams(final int code) {
+    protected final void generateParams(final int code) {
         final int lastNameIndex = getDigitsSum(code);
         final String sex = (lastNameIndex % 2 == 0) ? "f" : "m";
         lastName = getLinesFromFile("lastNames_" + sex).get(lastNameIndex);
@@ -28,7 +28,7 @@ public class FioGenerator extends Generator<Fio> {
     }
 
     @Override
-    public final Fio buildResponse() {
+    protected final Fio buildResponse() {
         return new Fio(lastName, firstName, middleName);
     }
 

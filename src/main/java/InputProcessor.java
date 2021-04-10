@@ -13,15 +13,15 @@ public class InputProcessor {
         if (input.trim().matches("\\d{4}")) {
             // Создаём Person
             final int intCode = Integer.parseInt(input);
-            final Person human = new Person(input);
-            human.called(new FioUniform(new FioGenerator().castFeature(intCode))).
+            final Person.Builder humanBuilder = new Person.Builder(input);
+            humanBuilder.called(new FioUniform(new FioGenerator().castFeature(intCode))).
             withPhysical(new PhysGenerator().castFeature(intCode)).
             withAppearance(new AppearanceGenerator().castFeature(intCode));
             // добавляем телефон, только если введённый код не палиндром
             if (!input.equals(new StringBuilder(input).reverse().toString())) {
-                human.withPhone(new PhoneGenerator().castFeature(intCode));
+                humanBuilder.withPhone(new PhoneGenerator().castFeature(intCode));
             }
-            result = human.toString();
+            result = humanBuilder.build().toString();
         } else {
             result = "Неверный ввод.";
         }

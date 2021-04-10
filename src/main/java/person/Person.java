@@ -2,41 +2,60 @@ package person;
 
 import person.appearance.Appearance;
 
-public class Person {
-
+public final class Person {
     private final String id;
-    private FioUniform name;
-    private Physical phys;
-    private Appearance appearance;
-    private Phone phone;
+    private final FioUniform name;
+    private final Physical phys;
+    private final Appearance appearance;
+    private final Phone phone;
 
-    public Person(final String id) {
-        this.id = id;
+    public static class Builder {
+        private final String id;
+        // Тут могут/должны быть конкретные дефолтные значения, например Иванов Иван Иванович, 18, и т.д.
+        private FioUniform name = null;
+        private Physical phys = null;
+        private Appearance appearance = null;
+        private Phone phone = null;
+
+        public Builder(final String id) {
+            this.id = id;
+        }
+
+        public final Builder called(final FioUniform o) {
+            this.name = o;
+            return this;
+        }
+
+        public final Builder withPhysical(final Physical o) {
+            this.phys = o;
+            return this;
+        }
+
+        public final Builder withAppearance(final Appearance o) {
+            this.appearance = o;
+            return this;
+        }
+
+        public final Builder withPhone(final Phone o) {
+            this.phone = o;
+            return this;
+        }
+
+        public final Person build() {
+            return new Person(this);
+        }
     }
 
-    public final Person called(final FioUniform fullName) {
-        this.name = fullName;
-        return this;
+    private Person(final Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.phys = builder.phys;
+        this.appearance = builder.appearance;
+        this.phone = builder.phone;
     }
-
-    public final Person withPhysical(final Physical physical) {
-        this.phys = physical;
-        return this;
-    }
-
-    public final Person withAppearance(final Appearance look) {
-        this.appearance = look;
-        return this;
-    }
-
-    public final Person withPhone(final Phone contactPhone) {
-        this.phone = contactPhone;
-        return this;
-    }
-
 
     @Override
-    public final String toString() {
+    public String toString() {
         final StringBuilder sb = new StringBuilder()
                 .append(id).append("\n")
                 .append(name).append("\n")

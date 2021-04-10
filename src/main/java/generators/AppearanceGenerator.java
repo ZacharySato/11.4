@@ -17,14 +17,14 @@ public class AppearanceGenerator extends Generator<Appearance> {
      * Цвет волос: из enum по индексу i-1 при i>0 (=0..8).
      */
     @Override
-    public final void generateParams(final int code) {
+    protected final void generateParams(final int code) {
         final int i = code % 100 / 10;
         eyes = EyesColor.colorByIndex(i / 2);
         hair = new Hair(i);
     }
 
     @Override
-    public final Appearance buildResponse() {
+    protected final Appearance buildResponse() {
         return new Appearance(eyes, hair);
     }
 }
